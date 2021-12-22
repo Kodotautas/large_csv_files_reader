@@ -1,13 +1,3 @@
-'''
-Uzduotis:
-Paimti github'o pull request'ų dataset'ą: https://www.kaggle.com/stephangarland/ghtorrent-pu... (92.53 GB),
-suprocessinti ir padėti į savo nuožiūrą pasirinktą warehouse'ą.
-Ant duomenų, panaudojant bet kokį pasirinktą įrankį, padaryti primityvią analitiką, kaip pvz.
-"Iš TOP 100 populiauriausių Python repositorijų, surasti top 3 daugiausiai pull request'ų darančius vartotojus"
-Technologijos ir prog. kalbos: pasirinktinai
-Pateikimo būdas: atsiųsti kodą ar/ir pristatymas online
-'''
-
 import os
 from os import listdir
 from kaggle.api.kaggle_api_extended import KaggleApi
