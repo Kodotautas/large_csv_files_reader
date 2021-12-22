@@ -19,6 +19,11 @@ cwd = os.getcwd()
 
 
 def find_csv_filenames(cwd=cwd, prefix="ghtorrent"):
+    '''
+    :param cwd: curent working directory
+    :param prefix: what file name should be at the beggining
+    :return: list of files which match filter
+    '''
     filenames = listdir(cwd)
     files = [cwd + "\\" + filename for filename in filenames if filename.startswith(prefix)]
     return files
