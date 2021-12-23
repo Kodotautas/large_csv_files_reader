@@ -1,3 +1,13 @@
+'''
+Uzduotis:
+Paimti github'o pull request'ų dataset'ą: https://www.kaggle.com/stephangarland/ghtorrent-pu... (92.53 GB),
+suprocessinti ir padėti į savo nuožiūrą pasirinktą warehouse'ą.
+Ant duomenų, panaudojant bet kokį pasirinktą įrankį, padaryti primityvią analitiką, kaip pvz.
+"Iš TOP 100 populiauriausių Python repositorijų, surasti top 3 daugiausiai pull request'ų darančius vartotojus"
+Technologijos ir prog. kalbos: pasirinktinai
+Pateikimo būdas: atsiųsti kodą ar/ir pristatymas online
+'''
+
 import os
 from os import listdir
 from kaggle.api.kaggle_api_extended import KaggleApi
@@ -10,9 +20,9 @@ api = KaggleApi()
 api.authenticate()
 
 # # Download .csv from Kaggle
-print('Downloading .csv files...  Use your time wisely')
-data_zip = api.dataset_download_files('stephangarland/ghtorrent-pull-requests', unzip=True)
-print('Dowload complete!')
+# print('Downloading .csv files...  Use your time wisely')
+# data_zip = api.dataset_download_files('stephangarland/ghtorrent-pull-requests', unzip=True)
+# print('Dowload complete!')
 
 # Get the current working directory
 cwd = os.getcwd()
@@ -50,10 +60,10 @@ for file in files:
 
 #Query to find top pull requesters
 SQL = '''
-      SELECT repo AS repository, actor_login AS user, count(pr_id) AS pulls_r_num
+      SELECT DISTINCT repo, actor_login, count(actor_login)
       FROM pull_requests
-      GROUP BY repo
-      ORDER BY count(pr_id) desc
+      GROUP BY repo, actor_login
+      ORDER BY count(repo) desc
       LIMIT 3;
       '''
 
