@@ -19,7 +19,7 @@ from sqlalchemy import create_engine
 api = KaggleApi()
 api.authenticate()
 
-# Download .csv from Kaggle
+# # Download .csv from Kaggle
 print('Downloading .csv files...  Use your time wisely')
 data_zip = api.dataset_download_files('stephangarland/ghtorrent-pull-requests', unzip=True)
 print('Dowload complete!')
@@ -29,11 +29,11 @@ cwd = os.getcwd()
 
 
 def find_csv_filenames(cwd=cwd, prefix="ghtorrent"):
-    '''
+    """
     :param cwd: curent working directory
     :param prefix: what file name should be at the beggining
     :return: list of files which match filter
-    '''
+    """
     filenames = listdir(cwd)
     files = [cwd + "\\" + filename for filename in filenames if filename.startswith(prefix)]
     return files
@@ -60,7 +60,8 @@ for file in files:
 
 #Query to find top pull requesters
 SQL = '''
-      SELECT DISTINCT repo, actor_login, count(actor_login)
+      SELECT DISTINCT repo AS repository, actor_login AS user, 
+                      count(actor_login) AS pull_request_count
       FROM pull_requests
       GROUP BY repo, actor_login
       ORDER BY count(repo) desc
