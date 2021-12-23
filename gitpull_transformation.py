@@ -19,10 +19,10 @@ from sqlalchemy import create_engine
 api = KaggleApi()
 api.authenticate()
 
-# # Download .csv from Kaggle
-# print('Downloading .csv files...  Use your time wisely')
-# data_zip = api.dataset_download_files('stephangarland/ghtorrent-pull-requests', unzip=True)
-# print('Dowload complete!')
+# Download .csv from Kaggle
+print('Downloading .csv files...  Use your time wisely')
+data_zip = api.dataset_download_files('stephangarland/ghtorrent-pull-requests', unzip=True)
+print('Dowload complete!')
 
 # Get the current working directory
 cwd = os.getcwd()
