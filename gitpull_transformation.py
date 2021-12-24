@@ -18,14 +18,15 @@ print('Dowload complete!')
 cwd = os.getcwd()
 
 
-def find_csv_filenames(cwd=cwd, prefix="ghtorrent"):
+def find_csv_filenames(cwd=cwd, prefix="ghtorrent", suffix='.csv'):
     """
     :param cwd: curent working directory
     :param prefix: what file name should be at the beggining
+    :param suffix: filename ends with .csv
     :return: list of files which match filter
     """
     filenames = listdir(cwd)
-    files = [cwd + "\\" + filename for filename in filenames if filename.startswith(prefix)]
+    files = [cwd + "\\" + filename for filename in filenames if filename.startswith(prefix) and filename.endswith(suffix)]
     return files
 
 
@@ -35,17 +36,21 @@ github_local_db = create_engine('sqlite:///github_local_database.db')
 
 # Push data to database
 print('Loading to database...')
+
 i = 0
 j = 1
+size = 500000
 for file in files:
-    for df in pd.read_csv(file, chunksize=500000, iterator=True):
+    for df in pd.read_csv(file, chunksize=size, iterator=True):
+        # Get only specific columns
+        df = df[['actor_login', 'repo', 'language']]
         #Filter only Python language related data
         df = df[df['language'] == 'Python']
         df.index += j
         i += 1
         df.to_sql('pull_requests', github_local_db, if_exists='append')
         j = df.index[-1] + 1
-        print("Readed billions rows: ", (j - 1) / 1000000000,
+        print("Readed rows in millions: ", (i*size)/1000000,
               "current file: ", file)
 
 #Query to find top pull requesters
