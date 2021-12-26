@@ -1,6 +1,6 @@
 # x_company_request large files program
 
-About program:
+About current program:
 * Download large .csv files (>17GB) to your local space;
 * Read these .csv by chunks;
 * After simple filtering it's uploading to SQLite local database;
