@@ -5,7 +5,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 import time
 
-#Start measuring time
+# Start measuring time
 start_time = time.time()
 
 # Authenticate API
@@ -27,7 +27,7 @@ def find_csv_filenames(cwd=cwd, prefix="ghtorrent", suffix='.csv'):
     :param cwd: curent working directory
     :param prefix: what file name should be at the beggining
     :param suffix: filename ends with .csv
-    :return: list of files which match filter
+    :return: list of files in folder which match filter
     """
     filenames = listdir(cwd)
     files = [cwd + "\\" + filename for filename in filenames if
@@ -44,7 +44,7 @@ print('Loading to database...')
 
 i = 0
 j = 1
-size = 500000
+size = 500000  # rows number
 for file in files:
     thead = pd.read_csv(file, nrows=3)
     dtypes = dict(zip(thead.columns.values, ['str', 'int32', 'int32', 'str', 'str', 'str',
