@@ -4,6 +4,7 @@
 API Reference:
 * Program requires to have API authorization from Kaggle. 
 API documentation: https://github.com/Kaggle/kaggle-api#api-credentials
+
 Important: dowloaded file **kaggle.json** must be placed in **~/.kaggle/kaggle.json** directory.
 * Not less than 150 GB free space in disk drive.
 
